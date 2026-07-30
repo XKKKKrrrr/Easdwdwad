@@ -9,7 +9,6 @@
 - 扑克碎片模式：反选蓝色背景，使用凸包处理印刷花色造成的轮廓凹陷。
 - 可尝试恢复轻微重叠的两个连通碎片。
 - 输出毫米坐标、面积、主方向、置信度和板面单应矩阵。
-- 仅依赖 NumPy 和 OpenCV；不依赖本机路径、C++ DLL、Shapely 或 SciPy。
 
 ## 安装
 
@@ -31,6 +30,7 @@ python render_previews.py --dataset "images" --output "preview\contact_sheet.jpg
 python render_previews.py --dataset "poker_images" --poker --output "preview\poker_contact_sheet.jpg"
 ```
 
+我买的卡纸偏小了
 默认板面尺寸为 `206.6 x 293.0 mm`。使用标准 A4 图像时，可传入：
 
 ```powershell
@@ -41,14 +41,9 @@ python fragment_detector.py detect --input "image.jpg" --board-width-mm 210 --bo
 
 成功时会返回 JSON，包含 `board`、`pieces` 和 `diagnostics`。每个碎片的 `polygon_mm`、`centroid_mm` 与 `pickup_mm` 均为毫米坐标：纸张中心是原点，向右为 `+X`，向上为 `+Z`。
 
-不会输出 `solution`，因为本项目不包含重排功能。
 
 ## 文件
 
 - `fragment_detector.py`：白色/扑克碎片识别 CLI 与 Python API。
 - `render_previews.py`：源图与透视校正图的轮廓预览生成器。
 - `requirements.txt`：运行和测试依赖。
-
-## 许可证
-
-本目录未附带许可证。公开发布前，请由项目权利人选择并添加适用许可证。
